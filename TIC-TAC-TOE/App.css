@@ -1,0 +1,99 @@
+*{
+  padding:0;
+  margin:0;
+  box-sizing:border-box;
+  font-family:cursive;
+}
+body{
+  height:100vh;
+  width:100vw;
+  background-color:#f99fb1;
+}
+.MainBoard{
+  display:flex;
+  height:100vh;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+}
+.Game-info{
+  display:flex;
+  width:80%;
+  justify-content:space-between;
+}
+.Profiles{
+  display:flex;
+  align-items:center;
+  flex-direction:column;
+  background-color:white;
+  width:250px;
+  border-radius:40px;
+  gap:15px;
+}
+
+.Profiles img{
+  /* position:relative;
+  top:-50px; */
+  height:100px;
+  width:100px;
+  border-radius:50%;
+  margin-top:15px;
+}
+.Profiles p{
+  font-size:24px;
+}
+.Profiles button{
+  height:50px;
+  width:80px;
+  background-color:#F32853;
+  color:white;
+  font:bolder;
+  font-size:32px;
+  border:none;
+  border-radius:8px;  
+  margin-bottom:15px;
+}
+
+.Rounds{
+  height:150px;
+  width:150px;
+  border-radius:50%;
+  background-color:#F8B933;
+  align-self:center;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+.Rounds p{
+  font-style:oblique;
+  font-weight:bolder;
+  font-size:x-large;
+}
+
+.square{
+  height:100px;
+  width:100px;
+  float:left;
+  margin:1px;
+  border:none;
+  font-size:32px;
+  border-radius:8px;
+  background-color:#F32853;
+}
+
+.Heading{
+  height:auto;
+  background-color:#F8B933;
+  width:auto;
+  padding:8px 16px;
+  font-size:20px;
+  border-radius:16px;
+  margin-top:16px;
+  
+}
+.GameBoard{
+  border:2px dashed #F32853;
+  padding:2px;
+  border-radius:10px;
+  background-color:white;
+}
