@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+import { useState , useEffect } from 'react';
 function Square({ value, onSquareClick }) {
   return (
     <button className="square" onClick={onSquareClick}>
@@ -11,6 +11,8 @@ function Square({ value, onSquareClick }) {
 export default function Board() {
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [XIsNext, setXisNext] = useState(true);
+  const [roundsWon,setroundsWon] = useState({player1:0,player2:0});
+  const [roundNo,setroundNo] = useState(1);
 
   function handleClick(i) {
     const nextSquares = squares.slice();
@@ -27,31 +29,69 @@ export default function Board() {
     setXisNext(!XIsNext);
   }
 
-  const winner = calculateWinner(squares);
+  function handleRoundClick(){
+    setroundNo(roundNo+1);
+  }
+  function resetGame(){
+    setSquares(Array(9).fill(null));
+    setXisNext(true);
+    setroundsWon({player1:0,player2:0});
+    setroundNo(1);
+  }
+  useEffect(()=>{
+    setSquares(Array(9).fill(null));
+    setXisNext(null);
+    winner=null;
+  },[roundNo])
+
+  let winner = calculateWinner(squares);
   let status;
+  useEffect(()=>{
   if(winner){
-    status=`Winner is ${winner==="X"?"Player1":"Player2"}`;
+    if(winner === 'X'){
+      setroundsWon({...roundsWon,player1:roundsWon.player1+1});
+    }
+    else{
+      setroundsWon({...roundsWon,player2:roundsWon.player2+1});
+    }
   }
-  else{
-    status =`NextMove:`+(XIsNext? 'Player1(X)':'Player2(0)');
+  },[winner])
+    
+  if (winner) {
+    status = winner === 'X' ? `Winner is Player 1 ` : `Winner is Player 2`;
+  } 
+    else if (squares.every((square) => square)) {
+    status = "draw";}
+  else {
+    status = `Next Move: ${XIsNext ? 'Player 1 (X)' : 'Player 2 (O)'}`;
   }
+  
 
   return (
       <div className="MainBoard">
         <div className="Game-info">
-            <div className="User-Profile"></div>
+            <div className="User-Profile">
             <div className="Profiles">
                 <img src="https://icons.iconarchive.com/icons/iconarchive/incognito-animals/512/Bear-Avatar-icon.png"></img>
-                <p>Akashdeep</p>
+                <p>Player 1</p>
                 <button>X</button>
             </div>
-            <div className="Rounds"><p>Round 1</p></div>
+            <button className='Heading'>Rounds Won {roundsWon.player1}</button>
+            </div>
+            <div className='RoundInfo'>
+            <div className="Rounds"><p>Round {roundNo}</p></div>
+            <button className='Heading' onClick={resetGame}>Reset</button>
+            </div>
+            <div className="User-Profile">
             <div className="Profiles">
               <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3DFasEmjz6QE0cjr6yvnmuEAEWkBSBphxvxukNQ8YilEwzLAGhFcb0lxM6wx1rrVrSb4&usqp=CAU"></img>
-              <p>Prabhjot</p>
+              <p>Player 2</p>
               <button>O</button>
             
             
+
+            </div>
+            <button className='Heading'>Rounds Won {roundsWon.player2}</button>
             </div>
         </div>
         <div className="GameBoard">
@@ -71,7 +111,10 @@ export default function Board() {
               <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
             </div>
         </div>
+        <div className='NextMove'>
             <div className="Heading">{status}</div>
+        {(winner || status==="draw")&& (<button className='Heading' onClick={handleRoundClick}> Next Round </button>)}
+        </div>
     </div>
   );
 }
