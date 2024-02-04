@@ -1,3 +1,4 @@
+
 *{
   padding:0;
   margin:0;
@@ -18,8 +19,8 @@ body{
 }
 .Game-info{
   display:flex;
-  width:80%;
-  justify-content:space-between;
+  width:100%;
+  justify-content:space-evenly;
 }
 .Profiles{
   display:flex;
@@ -32,8 +33,6 @@ body{
 }
 
 .Profiles img{
-  /* position:relative;
-  top:-50px; */
   height:100px;
   width:100px;
   border-radius:50%;
@@ -77,10 +76,17 @@ body{
   margin:1px;
   border:none;
   font-size:32px;
+  font-weight:700;
+  color:white;
   border-radius:8px;
   background-color:#F32853;
 }
-
+.User-Profile{
+  display:flex;
+  justify-content:center;
+  flex-direction:column;
+  align-items:center;
+}
 .Heading{
   height:auto;
   background-color:#F8B933;
@@ -89,11 +95,21 @@ body{
   font-size:20px;
   border-radius:16px;
   margin-top:16px;
-  
+  border:none;
 }
 .GameBoard{
   border:2px dashed #F32853;
   padding:2px;
   border-radius:10px;
   background-color:white;
+}
+.NextMove{
+  display:flex;
+  gap:24px;
+}
+.RoundInfo{
+  display:flex;
+  justify-content:center;
+  flex-direction:column;
+  align-items:center;
 }
