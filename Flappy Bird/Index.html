@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Flappy Game</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="gameContainer">
+    <canvas id="gameCanvas" width="480" height="640"></canvas>
+    
+    <!-- Start Screen -->
+    <div id="startScreen" class="overlay">
+      <h2>Flappy Game</h2>
+      <input type="text" id="playerName" placeholder="Enter Your Name" maxlength="15">
+      <div class="difficulty-selector">
+        <h3>Select Difficulty</h3>
+        <button class="difficulty-btn" data-difficulty="easy">Easy</button>
+        <button class="difficulty-btn" data-difficulty="medium">Medium</button>
+        <button class="difficulty-btn" data-difficulty="hard">Hard</button>
+      </div>
+      <button id="customizeButton">Customize Bird</button>
+      <button id="leaderboardButton">Leaderboard</button>
+      <button id="startButton">Start Game</button>
+      <p>Click or press Spacebar to fly</p>
+    </div>
+    
+    <!-- Customize Screen -->
+    <div id="customizeScreen" class="overlay" style="display: none;">
+      <h2>Customize Your Bird</h2>
+      <div id="birdPreview" style="width: 100px; height: 100px; margin: 20px;"></div>
+      
+      <div>
+        <h3>Bird Color</h3>
+        <div id="birdColors"></div>
+      </div>
+      
+      <div>
+        <h3>Eye Color</h3>
+        <div id="eyeColors"></div>
+      </div>
+      
+      <div>
+        <h3>Beak Color</h3>
+        <div id="beakColors"></div>
+      </div>
+      
+      <button id="backFromCustomize">Back</button>
+    </div>
+    
+    <!-- Leaderboard Screen -->
+    <div id="leaderboardScreen" class="overlay" style="display: none;">
+      <h2>Leaderboard</h2>
+      <table id="leaderboardTable">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Score</th>
+            <th>Difficulty</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody id="leaderboardBody">
+          <!-- Leaderboard entries will be inserted here -->
+        </tbody>
+      </table>
+      <button id="backFromLeaderboard">Back</button>
+    </div>
+    
+    <!-- Game Over Screen -->
+    <div id="gameOverScreen" class="overlay" style="display: none;">
+      <h2>Game Over!</h2>
+      <h3>Score: <span id="finalScore">0</span></h3>
+      <button id="playAgainButton">Play Again</button>
+      <button id="mainMenuButton">Main Menu</button>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html> 
